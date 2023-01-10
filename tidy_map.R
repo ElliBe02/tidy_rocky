@@ -20,8 +20,11 @@
 ##
 ## GitHub:
 ##
-usethis::create_github_token() 
-gitcreds::gitcreds_set() 
+# usethis::create_github_token()
+# gitcreds::gitcreds_set() 
+
+# git branch -M main
+# git remote add origin https://github.com/ElliBe02/tidy_rocky.git
 
 ##
 ## ---------------------------
@@ -72,6 +75,7 @@ map1 <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill = n), color = "black") +
   theme_minimal()
 
+map1
 
 # lat long points plotted -------------------------------------------------
 
