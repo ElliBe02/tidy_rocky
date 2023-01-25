@@ -11,11 +11,11 @@ editor: visual
 
 Phase 1: 
 
-To assess the quality of the two availble datasets -- MT and IHS.  
+To assess the quality of the two available data sets -- MT and IHS.  
 
 Phase 2:  
 
-To introduce possible futute analytics.  
+To introduce possible future analytics.  
 
 ## Preliminary:
 
@@ -33,9 +33,9 @@ Data wrangling 
 
     -   We're only interested in vessels greater than \~ 5 tonnes. To filter for these we've created a IMO to vessel type look up and chosen only a select few vessel types.  
 
-    -   N.B: We have assumed that instances with no corrosponding vessel type are minor vessels and not of interest.  
+    -   N.B: We have assumed that instances with no corresponding vessel type are minor vessels and not of interest.  
 
--   Unique Locational pings 
+-   Unique Location pings 
 
     -   Same IMO 
 
@@ -87,9 +87,9 @@ Shared vessel coverage % 
 
  
 
-How many sacntioned IMO only in IHS  
+How many sanctioned IMO only in IHS  
 
-How many sacntioned IMO only in MT  
+How many sanctioned IMO only in MT  
 
   
 
@@ -119,7 +119,7 @@ Objective: 
 
 Data Import:  
 
-Meathod: 
+Method: 
 
 Results:  
 
@@ -135,7 +135,7 @@ Missing countries acknowledgement 
 
  
 
-Port call heatmaps 
+Port call heat-maps 
 
  
 
@@ -185,7 +185,7 @@ Map STS and AIS against movement data 
 
  Data Import:  
 
-Meathod: 
+Method: 
 
 Results:  
 
@@ -235,7 +235,7 @@ H0: 
 
 Data Import:  
 
-Meathod: 
+Method: 
 
 Results:  
 
@@ -275,4 +275,4 @@ Grid analysis:  
 
 Fraud predictions  
 
-Of course the room for analytics exponentially increases if we find ourselves with 'interesting events' data. I.e. is there behaivour in the shipping data thats predictive of fraudulent behaviour?  
+Of course the room for analytics exponentially increases if we find ourselves with 'interesting events' data. I.e. is there behavior in the shipping data thats predictive of fraudulent behavior?  
