@@ -5,23 +5,274 @@ format: html
 editor: visual
 ---
 
-## Quarto
+# TOC:
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Objectives:
 
-## Running Code
+Phase 1: 
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+To assess the quality of the two available data sets -- MT and IHS.  
 
-```{r}
-1 + 1
-```
+Phase 2:  
 
-You can add options to executable code like this
+To introduce possible future analytics.  
 
-```{r}
-#| echo: false
-2 * 2
-```
+## Preliminary:
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Data layout 
+
+Data wrangling 
+
+-   Date filter 
+
+    -   '2022-05-21 00:00:00' to '2022-06-21 23:59:59'.   
+
+    -   Why? - As we see a complete data across this window.  
+
+-   IMO filter 
+
+    -   We're only interested in vessels greater than \~ 5 tonnes. To filter for these we've created a IMO to vessel type look up and chosen only a select few vessel types.  
+
+    -   N.B: We have assumed that instances with no corresponding vessel type are minor vessels and not of interest.  
+
+-   Unique Location pings 
+
+    -   Same IMO 
+
+    -   Within 20km 
+
+    -   Within 2hrs 
+
+## Experiments:
+
+1: 
+
+Objective: 
+
+Coverage of sanctioned vessels (IMO)  
+
+**Date filter applied** 
+
+**IMO filter applied** 
+
+ 
+
+Data Import:  
+
+Meathod: 
+
+ 
+
+Results:  
+
+ 
+
+Sanctioned count 
+
+IHS imo count 
+
+MT imo count 
+
+ 
+
+IHS coverage of sanctioned % 
+
+MT coverage of sanctioned % 
+
+ 
+
+Shared IMO count 
+
+Shared vessel coverage % 
+
+ 
+
+How many sanctioned IMO only in IHS  
+
+How many sanctioned IMO only in MT  
+
+  
+
+Conclusion:  
+
+ 
+
+2 & 5 : 
+
+Objective: 
+
+2)  Coverage of sanctioned port list  
+
+**Date filter applied** 
+
+**IMO filter applied**  
+
+ 
+
+5) Map port data against regions / countries 
+
+**Date filter applied** 
+
+**IMO filter applied**  
+
+  
+
+Data Import:  
+
+Method: 
+
+Results:  
+
+ 
+
+Counts of port IDs, Facility IDs and look-ups 
+
+ 
+
+Reactable table 
+
+Missing countries acknowledgement 
+
+ 
+
+Port call heat-maps 
+
+ 
+
+Conclusion:  
+
+ 
+
+3: 
+
+Objective: 
+
+Global positional data overlap 
+
+**Date filter applied** 
+
+**IMO filter applied**  
+
+**Spsurvey filter applied** 
+
+**Same locational Pings assumptions** 
+
+ 
+
+Data Import:  
+
+Meathod: 
+
+Results:  
+
+ 
+
+ Conclusion:  
+
+ 
+
+7: 
+
+Objective: 
+
+Map STS and AIS against movement data 
+
+**Date filter applied** 
+
+**IMO filter applied**  
+
+ 
+
+ Data Import:  
+
+Method: 
+
+Results:  
+
+ 
+
+-   STS MT IMO count 
+
+-   STS IHS IMO count 
+
+-   STS total IMO count  
+
+-   IHS coverage 
+
+-   MT coverage 
+
+ 
+
+-   Dark MT IMO count 
+
+-   Dark IHS IMO count 
+
+-   Dark total count 
+
+-   IHS coverage 
+
+-   MT coverage 
+
+ 
+
+Conclusion:  
+
+ 
+
+8:  
+
+Objective: 
+
+**Date filter applied** 
+
+**IMO filter applied** 
+
+ 
+
+Undeclared port calls  on at least three random days 
+
+H0: 
+
+Data Import:  
+
+Method: 
+
+Results:  
+
+ 
+
+Summary tables from three random days:  
+
+-   Seen in MT_movement 
+
+-   Seen in Mt_Port_calls 
+
+-   Seen in IHS 
+
+Conclusion:  
+
+ 
+
+## Phase 1: Conclusion
+
+## Phase 2: Possible future Work
+
+Spatial sampling: 
+
+-   spsurvey 
+
+Grid analysis:  
+
+-   raster 
+
+-   sp 
+
+-   spatial 
+
+-   terra 
+
+ 
+
+Fraud predictions  
+
+Of course the room for analytics exponentially increases if we find ourselves with 'interesting events' data. I.e. is there behavior in the shipping data thats predictive of fraudulent behavior?  
