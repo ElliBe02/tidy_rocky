@@ -20,8 +20,8 @@
 ##
 ## GitHub:
 ##
-# usethis::create_github_token() 
- gitcreds::gitcreds_set() 
+usethis::create_github_token() 
+gitcreds::gitcreds_set() 
 ##
 ## ---------------------------
 
@@ -97,7 +97,7 @@ mtData <- py$mt_01 %>%
     ihs_vessel_coverage <- (sum(interest_Vessels %in% ihs_imo) / length(interest_Vessels)) %>%
       scales::percent(accuracy = 0.01)
     
-    interest_ihs_only <- sum(interest_Vessels %in% ihs_imo) - sum(interest_Vessels %in% sharedIMO)
+    interest_ihs_only_count <- sum(interest_Vessels %in% ihs_imo) - sum(interest_Vessels %in% sharedIMO)
     
   # MT
     
@@ -107,7 +107,7 @@ mtData <- py$mt_01 %>%
     mt_vessel_coverage <- (sum(interest_Vessels %in% mt_imo) / length(interest_Vessels)) %>%
       scales::percent(accuracy = 0.01)
     
-    interest_mt_only <- sum(interest_Vessels %in% mt_imo) - sum(interest_Vessels %in% sharedIMO)
+    interest_mt_only_count <- sum(interest_Vessels %in% mt_imo) - sum(interest_Vessels %in% sharedIMO)
     
     
   # Shared
@@ -137,8 +137,8 @@ mtData <- py$mt_01 %>%
   
   saveRDS(shared_vessel_coverage, '~/projectRocky/Data/markdown data/shared_vessel_coverage.rds')
   
-  saveRDS(interest_ihs_only, '~/projectRocky/Data/markdown data/interest_ihs_only.rds')
-  saveRDS(interest_mt_only, '~/projectRocky/Data/markdown data/interest_mt_only.rds')
+  saveRDS(interest_ihs_only_count, '~/projectRocky/Data/markdown data/interest_ihs_only_count.rds')
+  saveRDS(interest_mt_only_count, '~/projectRocky/Data/markdown data/interest_mt_only_count.rds')
 }  
 
 
@@ -509,6 +509,61 @@ saveRDS(mapdata1_ihs, '~/projectRocky/Experiment 2/mapdata1_ihs.rds')
 #' Global positional data overlap
 
 # Data import:
+
+py_run_file('~/03_countingMT.py')
+
+numRows <- 10000
+
+py_rolling <- r_to_py(numRows)
+
+interations <- as.numeric(ceiling((py$mtCount - nrow(mtMovement)) / numRows))
+
+# the next mt data
+
+for(i in 1:interations){
+  
+  if(i == 1){
+    py_next <- r_to_py((nrow(mtMovement)+1))
+    
+    run_roll <- function(){
+      
+      reticulate::py_run_file('~/projectRocky/Experiment 2/rollingMtMovement.py')
+      
+      mtMovement <- as_tibble(py$mtRollingData)
+      
+      names(mtMovement) <- c("imo", "lon.mt", "lat.mt", "movementdate.mt")
+      
+      mtMovement[,c(-1, -4)] <- mutate_all(mtMovement[,c(-1, -4)], as.numeric)
+      
+      mtMovement$movementdate.mt <- as.POSIXct(mtMovement$movementdate.mt)
+      
+      rollingOverlap <- myFunctions::format_overlap_table(mtMovement)
+      
+      return(rollingOverlap)
+      
+    }
+    
+    rollingOverlap <- run_roll()
+    
+    movementOverlap <- distinct(bind_rows(movementOverlap, rollingOverlap))
+    
+  }
+  else{
+    py_next <- r_to_py(py_to_r(py_next) + (i*py_to_r(py_rolling)))
+    
+    rollingOverlap <- run_roll()
+    
+    movementOverlap <- distinct(bind_rows(movementOverlap, rollingOverlap))
+  }
+  
+}
+
+
+
+
+
+
+
 
 
 
